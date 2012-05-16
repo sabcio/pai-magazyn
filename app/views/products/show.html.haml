@@ -1,0 +1,19 @@
+%h1= @product.name
+
+%p
+  Description:
+  = @product.description
+
+%p
+  Photo URL:
+  = @product.photo_url
+
+%p
+  Stock:
+  = @product.stock
+
+%p
+  Price:
+  = @product.price
+
+= link_to "Products", products_path

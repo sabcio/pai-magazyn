@@ -1,0 +1,39 @@
+class Api::ProductsController < ApplicationController
+
+  def index
+    @products = Product.all
+    render xml: @products, only: [:name, :description, :stock, :price, :photo_url], skip_types: true, dasherize: false
+  end
+
+  def show
+    @product = Product.find(params[:id])
+    render xml: @product, only: [:name, :description, :stock, :price, :photo_url], skip_types: true, dasherize: false
+  end
+
+  def create
+    @product = Product.new(params[:product])
+
+    if @product.save
+      render xml: @product, status: :created, location: @product
+    else
+      render xml: @product.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @product = Product.find(params[:id])
+
+    if @product.update_attributes(params[:product])
+      head :no_content
+    else
+      render xml: @product.errors, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+
+    head :no_content
+  end
+end
