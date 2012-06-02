@@ -1,0 +1,23 @@
+%h1 Listing orders
+
+%table.table.table-striped.table-bordered.table-condensed
+  %tr
+    %th{style: "width: 20%"} Number
+    %th{style: "width: 35%"} Comment
+    %th{style: "width: 5%"} Items
+    %th{style: "width: 20%"} Options
+
+  - @orders.each do |order|
+    %tr
+      %td= order.number
+      %td= truncate order.comment, length: 60
+      %td
+      %td
+        .btn-group
+          = link_to 'Show', order, class: "btn"
+          = link_to 'Edit', edit_order_path(order), class: "btn"
+          = link_to 'Destroy', order, confirm: 'Are you sure?', method: :delete, class: "btn"
+
+%br
+
+= link_to 'New order', new_order_path

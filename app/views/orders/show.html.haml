@@ -1,0 +1,16 @@
+%h1= "Order #{@order.number}"
+
+%p
+  Comment:
+  = @order.comment
+
+%div
+  - if @order.line_items.present?
+    Products:
+    %ul
+    - @order.line_items.each do |product|
+      %li= link_to product.name, product
+  - else
+    No products added yet
+
+= link_to "Orders", orders_path

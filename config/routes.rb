@@ -3,6 +3,7 @@ Magazyn::Application.routes.draw do
   devise_for :users
 
   resources :users
+  resources :orders
   resources :products
 
   namespace :api do
