@@ -7,6 +7,7 @@ gem 'rest-client'
 gem 'devise'
 gem 'haml'
 gem 'nested_form', :git => 'https://github.com/ryanb/nested_form.git'
+gem 'state_machine'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

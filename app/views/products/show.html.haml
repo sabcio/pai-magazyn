@@ -1,19 +1,19 @@
 %h1= @product.name
 
-%p
-  Description:
-  = @product.description
+.row
+  .span6
+    %p
+      = @product.description
+  .span6
+    = product_photo @product, "512x512"
+.row
+  .span12
+    %p
+      Stock:
+      = @product.stock
 
-%p
-  Photo URL:
-  = @product.photo_url
+    %p
+      Price:
+      = number_to_currency @product.price
 
-%p
-  Stock:
-  = @product.stock
-
-%p
-  Price:
-  = @product.price
-
-= link_to "Products", products_path
+    = link_to "Products", products_path

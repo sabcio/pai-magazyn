@@ -15,7 +15,7 @@
       %td= product.name
       %td= truncate product.description, length: 60
       %td= product.stock
-      %td= product.price
+      %td= number_to_currency product.price
       %td
         .btn-group
           = link_to 'Show', product, class: "btn"

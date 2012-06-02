@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
 
   has_many :line_items, dependent: :destroy
-  accepts_nested_attributes_for :line_items
+  accepts_nested_attributes_for :line_items, allow_destroy: true
 
   after_create :set_number
 
@@ -12,6 +12,21 @@ class Order < ActiveRecord::Base
 
   def total_items
     line_items.count
+  end
+
+
+  state_machine :state, :initial => :new do
+    event :activate do
+      transition new: :open
+    end
+
+    event :process do
+      transition open: :processed
+    end
+
+    event :close do
+      transition processed: :closed
+    end
   end
 
 end

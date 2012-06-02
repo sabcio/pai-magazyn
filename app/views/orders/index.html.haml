@@ -4,6 +4,7 @@
   %tr
     %th{style: "width: 20%"} Number
     %th{style: "width: 35%"} Comment
+    %th State
     %th{style: "width: 5%"} Items
     %th{style: "width: 20%"} Options
 
@@ -11,6 +12,7 @@
     %tr
       %td= order.number
       %td= truncate order.comment, length: 60
+      %td= order.state
       %td= order.total_items
       %td
         .btn-group
