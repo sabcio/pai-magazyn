@@ -38,7 +38,7 @@ namespace :deploy do
   end
 end
 
-after 'deploy:symlink', 'deploy:symlink_shared'
+after 'deploy:create_symlink', 'deploy:symlink_shared'
 
 # Override the restart task to do something better
 deploy.task :restart, :roles => :app do
