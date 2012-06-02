@@ -11,7 +11,7 @@
     %tr
       %td= order.number
       %td= truncate order.comment, length: 60
-      %td
+      %td= order.total_items
       %td
         .btn-group
           = link_to 'Show', order, class: "btn"

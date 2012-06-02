@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20120602102409) do
 
   create_table "line_items", :force => true do |t|
-    t.integer "amount_need"
+    t.integer "amount_needed"
     t.integer "amount_given"
     t.integer "order_id"
     t.integer "product_id"
