@@ -1,13 +1,17 @@
-class Api::ProductsController < ApplicationController
+class Api::ProductsController < Api::BaseController
+
+  before_filter :authenticate_storehouse, except: [:index, :show]
 
   def index
     @products = Product.all
-    render xml: @products, only: [:name, :description, :stock, :price, :photo_url], skip_types: true, dasherize: false
+    render xml: @products, only: [:name, :description, :stock, :price, :photo_url, :removed],
+      skip_types: true, dasherize: false
   end
 
   def show
     @product = Product.find(params[:id])
-    render xml: @product, only: [:name, :description, :stock, :price, :photo_url], skip_types: true, dasherize: false
+    render xml: @product, only: [:name, :description, :stock, :price, :photo_url],
+      skip_types: true, dasherize: false
   end
 
   def create
