@@ -7,13 +7,12 @@
       - @user.errors.full_messages.each do |msg|
         %li= msg
 
-
   .field
     = f.label :name
     = f.text_field :name
   .field
     = f.label :description
-    = f.text_field :description
+    = f.text_area :description
   .field
     = f.label :photo_url
     = f.text_field :photo_url
@@ -27,4 +26,4 @@
     = f.label :removed
     = f.check_box :removed
   .actions
-    = f.submit
+    = f.submit class: "btn"
