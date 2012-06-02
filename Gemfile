@@ -10,7 +10,8 @@ gem 'nested_form', :git => 'https://github.com/ryanb/nested_form.git'
 gem 'state_machine'
 gem 'capistrano'
 gem 'capistrano-ext'
-
+gem 'rvm-capistrano'
+gem 'thin'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

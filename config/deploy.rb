@@ -42,13 +42,13 @@ after 'deploy:symlink', 'deploy:symlink_shared'
 
 # Override the restart task to do something better
 deploy.task :restart, :roles => :app do
-  deploy.web.disable
+  # deploy.web.disable
 
   # migrate
   thin.restart
 
   sleep 5
-  deploy.web.enable
+  # deploy.web.enable
   deploy.cleanup
 end
 
