@@ -1,6 +1,7 @@
 class Api::ProductsController < Api::BaseController
 
-  before_filter :authenticate_storehouse, except: [:index, :show]
+  http_basic_authenticate_with name: Settings.auth.login, password: Settings.auth.passwd,
+    except: [:index, :show]
 
   def index
     @products = Product.all

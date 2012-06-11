@@ -12,6 +12,7 @@ gem 'capistrano'
 gem 'capistrano-ext'
 gem 'rvm-capistrano'
 gem 'thin'
+gem 'rails_config'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
