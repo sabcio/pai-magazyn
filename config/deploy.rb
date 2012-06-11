@@ -36,6 +36,7 @@ namespace :deploy do
   task :symlink_shared do
     run "ln -nfs #{shared_path}/config/thin.yml #{current_path}/thin.yml"
     run "ln -nfs #{shared_path}/config/production.sqlite3 #{current_path}/db/production.sqlite3"
+    run "ln -nfs #{shared_path}/config/production.yml #{current_path}/config/settings/production.yml"
   end
 end
 
