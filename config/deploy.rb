@@ -35,6 +35,7 @@ set :use_sudo, false
 namespace :deploy do
   task :symlink_shared do
     run "ln -nfs #{shared_path}/config/thin.yml #{current_path}/thin.yml"
+    run "ln -nfs #{shared_path}/config/production.sqlite3 #{current_path}/db/production.sqlite3"
   end
 end
 
@@ -44,7 +45,9 @@ after 'deploy:create_symlink', 'deploy:symlink_shared'
 deploy.task :restart, :roles => :app do
   # deploy.web.disable
 
-  # migrate
+  migrate
+  assets.precompile
+
   thin.restart
 
   sleep 5
@@ -58,6 +61,13 @@ end
 
 deploy.web.task :enable, :roles => :web do
   run "if [ -f #{current_path}/public/index.html ]; then rm #{current_path}/public/index.html; fi"
+end
+
+namespace :assets do
+  desc "Precompile assets"
+  task :precompile, :roles => :app do
+    run "cd #{current_path}; bundle exec rake assets:precompile RAILS_ENV=production"
+  end
 end
 
 # Thin tasks
