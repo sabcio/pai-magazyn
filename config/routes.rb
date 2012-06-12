@@ -6,6 +6,8 @@ Magazyn::Application.routes.draw do
   resources :orders
   resources :products
 
+  match "logs" => "logs#show"
+
   namespace :api do
     resources :users, :except => [:new, :edit]
     resources :products, :except => [:new, :edit]
