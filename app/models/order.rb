@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
 
-  has_many :line_items, dependent: :destroy
-  accepts_nested_attributes_for :line_items, allow_destroy: true
+  has_many :products, dependent: :destroy, class_name: "LineItem"
+  accepts_nested_attributes_for :products, allow_destroy: true
 
   after_create :set_number
 
@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
   end
 
   def total_items
-    line_items.count
+    products.count
   end
 
 

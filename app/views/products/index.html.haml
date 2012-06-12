@@ -2,8 +2,9 @@
 
 %table.table.table-striped.table-bordered.table-condensed
   %tr
-    %th{style: "width: 15%"} Picture
-    %th{style: "width: 20%"} Name
+    %th{style: "width: 2%"} Number
+    %th{style: "width: 12%"} Picture
+    %th{style: "width: 15%"} Name
     %th{style: "width: 35%"} Description
     %th{style: "width: 5%"} Stock
     %th{style: "width: 5%"} Price
@@ -11,6 +12,7 @@
 
   - @products.each do |product|
     %tr
+      %td= product.product_number
       %td= product_photo(product)
       %td= product.name
       %td= truncate product.description, length: 60

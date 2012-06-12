@@ -13,12 +13,12 @@
 
   %div.product_list
     %h3 List of products to order
-    = f.fields_for :line_items do |line_item_form|
+    = f.fields_for :products do |line_item_form|
       = line_item_form.select(:product_id, Product.all.map { |p| [p.name, p.id] })
       = line_item_form.text_field :amount_needed, class: "input-mini"
       = line_item_form.link_to_remove "Remove this product"
 
-    %p= f.link_to_add "Add a product", :line_items
+    %p= f.link_to_add "Add a product", :products
 
   .actions
     = f.submit class: "btn"

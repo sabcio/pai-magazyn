@@ -1,17 +1,17 @@
 class Api::ProductsController < Api::BaseController
 
-  http_basic_authenticate_with name: Settings.auth.login, password: Settings.auth.passwd
-    # except: [:index, :show]
+  # http_basic_authenticate_with name: Settings.auth.login, password: Settings.auth.passwd,
+  #    except: [:index, :show]
 
   def index
     @products = Product.all
-    render xml: @products, only: [:name, :description, :stock, :price, :photo_url, :removed],
+    render xml: @products, only: [:name, :description, :stock, :price, :photo_url, :removed, :product_number],
       skip_types: true, dasherize: false
   end
 
   def show
-    @product = Product.find(params[:id])
-    render xml: @product, only: [:name, :description, :stock, :price, :photo_url],
+    @product = Product.find_by_product_number(params[:id])
+    render xml: @product, only: [:name, :description, :stock, :price, :photo_url, :removed, :product_number],
       skip_types: true, dasherize: false
   end
 
@@ -26,7 +26,7 @@ class Api::ProductsController < Api::BaseController
   end
 
   def update
-    @product = Product.find(params[:id])
+    @product = Product.find_by_product_number(params[:id])
 
     if @product.update_attributes(params[:product])
       head :no_content
@@ -36,7 +36,7 @@ class Api::ProductsController < Api::BaseController
   end
 
   def destroy
-    @product = Product.find(params[:id])
+    @product = Product.find_by_product_number(params[:id])
     @product.destroy
 
     head :no_content
