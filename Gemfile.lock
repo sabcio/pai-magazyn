@@ -95,6 +95,7 @@ GEM
       rack
     rack-test (0.6.1)
       rack (>= 1.0)
+    railroady (1.0.7)
     rails (3.2.2)
       actionmailer (= 3.2.2)
       actionpack (= 3.2.2)
@@ -160,6 +161,7 @@ DEPENDENCIES
   haml
   jquery-rails
   nested_form!
+  railroady
   rails (= 3.2.2)
   rails_config
   rest-client

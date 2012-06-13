@@ -14,6 +14,10 @@ gem 'rvm-capistrano'
 gem 'thin'
 gem 'rails_config'
 
+group :development do
+  gem 'railroady'
+end
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
