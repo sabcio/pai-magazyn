@@ -16,4 +16,15 @@ class Api::OrdersController < Api::BaseController
     end
   end
 
+  def update
+    @order = Order.find(params[:id])
+
+    if @order.update_attributes(params[:order])
+      head :no_content
+    else
+      render xml: @order.errors, status: :unprocessable_entity
+    end
+  end
+
+
 end
