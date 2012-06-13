@@ -1,5 +1,25 @@
 @import "bootstrap";
 
+div#errorExplanation, div#error_explanation{
+  background: #800100;
+  @include border-radius(10px);
+  color: #FFF;
+  display: inline-block;
+  font-size: 0.95em;
+  margin-bottom: 15px;
+  padding: 10px;
+
+  h2{
+    font-size: 1em;
+    margin-bottom: 0.3em;
+    color: #FFF;
+  }
+  ul li{
+    list-style: disc outside;
+    margin-left: 20px;
+  }
+}
+
 body {
   padding-bottom: 40px;
   padding-top: 60px;
