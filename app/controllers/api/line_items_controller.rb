@@ -26,6 +26,8 @@ class Api::LineItemsController < Api::BaseController
     @order = Order.find(params[:order_id])
     @item = @order.products.find(params[:id])
 
+    params[:product].merge(product_id: params[:product].delete(:product_number))
+
     if @item.update_attributes(params[:product])
       head :no_content
     else
