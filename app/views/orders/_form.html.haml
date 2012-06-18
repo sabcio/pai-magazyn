@@ -20,5 +20,10 @@
 
     %p= f.link_to_add "Add a product", :products
 
+  - unless @order.new_record?
+    .field
+      = f.label :state
+      = f.select(:state, ["new", "processed", "closed"])
+
   .actions
     = f.submit class: "btn"

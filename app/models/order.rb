@@ -5,6 +5,9 @@ class Order < ActiveRecord::Base
 
   after_create :set_number
 
+  scope :not_closed, where("state != ?", "closed")
+  scope :ordered, order("id DESC")
+
   def set_number
     time = Time.zone.now
     update_attribute(:number, [id, time.month, time.year].join("/"))

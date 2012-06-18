@@ -10,4 +10,16 @@ class LineItem < ActiveRecord::Base
   validates :amount_given, numericality: { :only_integer => true },
                           allow_blank: true
 
+  before_create :set_amount_given
+
+  def set_amount_given
+    self.amount_given = 0
+  end
+
+  def add_to_stock
+    product.transaction do
+      product.update_attribute(:stock, product.stock + amount_given) if amount_given
+    end
+  end
+
 end

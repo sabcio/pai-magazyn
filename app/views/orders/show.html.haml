@@ -3,16 +3,26 @@
 %p
   Comment:
   = @order.comment
-
+%p
+  State:
+  %strong= @order.state
 %div
   - if @order.products.present?
     Products:
-    %ul
-    - @order.products.each do |line_item|
-      %li
-        = link_to line_item.product.name, line_item.product
-        \-
-        = line_item.amount_needed
+    %table.table.table-striped.table-bordered.table-condensed
+      %tr
+        %th{style: "width: 25%"} Product
+        %th{style: "width: 25%"} Current Stock
+        %th{style: "width: 25%"} Need
+        %th{style: "width: 25%"} Given
+
+      - @order.products.each do |line_item|
+        %tr
+          %td= link_to line_item.product.name, line_item.product
+          %td= line_item.product.stock
+          %td= line_item.amount_needed
+          %td= line_item.amount_given
+
   - else
     No products added yet
 
